@@ -11,9 +11,4 @@ install:
 
 script:
   - "ansible-playbook -i inventory playbook.yml --extra-vars 'timezone=Kwajalein' --connection=local --sudo"
-  - >
-    ansible-playbook -i inventory playbook.yml --extra-vars 'timezone=Kwajalein' --connection=local --sudo
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
   - date +%Z | grep 'MHT'
